@@ -2,11 +2,10 @@
 Microservices to provide API for real estate social network project
 
 # Features demo
-https://www.youtube.com/watch?v=M8AfR5YzYrY
+<a href="https://www.youtube.com/watch?v=M8AfR5YzYrY" target="_blank">Youtube video link</a>
 
 # Microservices architecture
 ![microservices](assets/microservices-architecture.png)
-
 
 # UI
 ## Login
