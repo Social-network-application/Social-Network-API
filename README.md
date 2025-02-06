@@ -1,5 +1,5 @@
 # Social-Network-API
-Microservices to provide API for real estate social network project
+Microservices to provide APIs for a real estate social network application
 
 # Features demo
 [Youtube Video Link](https://www.youtube.com/watch?v=M8AfR5YzYrY)
