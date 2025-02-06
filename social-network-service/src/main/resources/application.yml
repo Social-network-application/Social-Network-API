@@ -1,0 +1,72 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: social-network-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show_sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/social_network_service?createDatabaseIfNotExist=true
+    username: root
+    password: ${social-db-password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minIdle: 10
+      idle-timeout: 10000
+      maximumPoolSize: 30
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8661/eureka
+    instance:
+      hostname: localhost
+
+security:
+  oauth2:
+    client:
+      clientId: social
+      clientSecret: ${social-client-secret}
+      accessTokenUri: http://localhost:8888/oauth/token
+      grant-type: client_credentials
+      scope: social, media, chat
+    resource:
+      tokenInfoUri: http://localhost:8888/oauth/check_token
+
+social:
+  includeLocalDatabase: true
+  security:
+    jwt-signer:
+      signing-key: ${social-client-signing-key}
+  initAction: true
+
+logging:
+  level:
+    org:
+      springframework:
+        messaging: trace
+  web:
+    socket: trace
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 8000
+        readTimeout: 8000
+
+#ribbon:
+#  eureka:
+#    enabled: true
+
+
