@@ -1,0 +1,53 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gateway-service
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8661/eureka
+    instance:
+      hostname: localhost
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+ribbon:
+  ConnectTimeout: 8000
+  ReadTimeout: 8000
+
+zuul:
+  ribbon:
+    ConnectTimeout: 8000
+    ReadTimeout: 8000
+  sensitiveHeaders: Cookie,Set-Cookie
+  host:
+    connect-timeout-milllis: 8000
+    socket-timeout-milllis: 8000
+  ignoredServices: '*'
+  routes:
+    social-network-service:
+      path: /social/**
+      serviceId: social-network-service
+      stripPrefix: true
+      sensitive-headers: Cookie,Set-Cookie
+    auth-server:
+      path: /auth/**
+      serviceId: auth-server
+      stripPrefix: true
+      sensitive-headers: Cookie,Set-Cookie
+  security:
+    basic:
+      enabled: false
+
+
